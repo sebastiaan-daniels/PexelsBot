@@ -1,34 +1,43 @@
 @ECHO OFF
+TITLE PexelBot Setup
 IF EXIST src/.env (GOTO :EXISTING) ELSE GOTO :FROMSCRATCH
 
 
 :EXISTING
-echo file exists
+ECHO file exists
 GOTO :END
 
 
 :FROMSCRATCH
-Rem Create .env file
+REM Create .env file
 python setup/install_and_setup.py -env
+cls
 
-Rem Setup the venv
-echo Setting up virtual environment...
+REM Setup the venv
+ECHO Setting up virtual environment...
 cd src
 python -m venv venv
+cls
 
-echo Activating virtual environment...
+ECHO Activating virtual environment...
 call venv\Scripts\activate
+cls
 
-echo Installing dependencies...
+ECHO Installing dependencies...
 pip install --disable-pip-version-check -q -r ../setup/requirements.txt
 cd ..
+cls
 
-echo Deactivating virtual environment...
+REM copy the run file to the root
+copy setup\run.bat . >nul
+cls
+
+REM deactivate the venv
 deactivate
 
 GOTO :END
 
 
 :END
-echo end
+ECHO Done!
 PAUSE
