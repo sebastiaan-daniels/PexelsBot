@@ -1,15 +1,14 @@
 # Import statements and initialisations
 import discord
-import os
-from dotenv import load_dotenv
 from discord.ext import commands
+from util import env_loader
 
 # Initialisations
-load_dotenv()
-bot = discord.Bot(debug_guilds=[os.getenv('GUILD_ID')]) #! Remove debug_guilds when in production
+# ! Remove debug_guilds when in production
+bot = discord.Bot(debug_guilds=[env_loader.EnvLoader().guild_id])
 
 cogs_list = [
-    None
+    'image'
 ]
 
 for cog in cogs_list:
@@ -35,4 +34,4 @@ async def on_slash_command_error(ctx, error):
 
 
 # Bot run command with token
-bot.run(os.getenv('TOKEN'))  # run the bot with the token
+bot.run(env_loader.EnvLoader().token)  # run the bot with the token

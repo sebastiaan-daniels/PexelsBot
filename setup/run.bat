@@ -20,3 +20,5 @@ ECHO Please run the setup.bat file first
 PAUSE
 
 :END
+cd ..
+deactivate
