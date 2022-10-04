@@ -8,7 +8,8 @@ from util import env_loader
 bot = discord.Bot(debug_guilds=[env_loader.EnvLoader().guild_id])
 
 cogs_list = [
-    'image'
+    'image',
+    'misc',
 ]
 
 for cog in cogs_list:

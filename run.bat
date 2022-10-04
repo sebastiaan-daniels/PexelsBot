@@ -19,4 +19,8 @@ ECHO You have not setup PexelBot yet!
 ECHO Please run the setup.bat file first
 PAUSE
 
+<<<<<<< Updated upstream
 :END
+=======
+:END
+>>>>>>> Stashed changes
