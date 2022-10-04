@@ -4,8 +4,28 @@ IF EXIST src/.env (GOTO :EXISTING) ELSE GOTO :FROMSCRATCH
 
 
 :EXISTING
-ECHO file exists
-GOTO :END
+ECHO You have already setup PexelBot!
+ECHO Running this file again will reset your tokens and re-install the virtual environment
+SET /P AREYOUSURE=Are you sure you want to run this file again?(Y/[N])? 
+IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
+
+REM Delete everything, then run from scratch
+cd src
+
+ECHO Removing virtual environment
+rmdir /s /q venv
+cls
+
+ECHO Removing environmental files
+DEL /F /Q .env
+cls
+
+cd ..
+
+REM Remove run.bat
+DEL /F /Q run.bat
+
+GOTO :FROMSCRATCH
 
 
 :FROMSCRATCH
